@@ -64,7 +64,7 @@ return <section id="hero" className="relative min-h-screen flex items-center jus
                     label: 'Eventos Realizados'
                 }, {
                     number: '300+',
-                    label: 'Capacidade'
+                    label: 'Capacidade de hospedagem'
                 }, {
                     number: '10+',
                     label: 'Anos de Experiência'
