@@ -33,7 +33,7 @@ return (
                     <ul className="space-y-2 text-slate-400">
                         <li>Rua Laura Maiello Kook, 1711, 18052-445</li>
                         <li>Ipanema das Pedras, Sorocaba - SP</li>
-                        <li>(11) 98765-4321</li>
+                        <li>+55 (15) 98190-0157</li>
                         <li className="flex items-center gap-2">
                             <Mail className="w-4 h-4" />
                             magnoliaconventionscenter@gmail.com

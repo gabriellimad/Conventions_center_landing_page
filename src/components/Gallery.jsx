@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Gallery = () => {
   const srcs = [
-      '/img-hotel/drone-todo-hotel-contrast-30.jpeg',
+    '/img-hotel/drone-todo-hotel-contrast-30.jpeg',
     '/img-hotel/principal-hotel-old.jpg',
     '/img-hotel/recepcao.png',
     '/img-hotel/quarto-two.png',

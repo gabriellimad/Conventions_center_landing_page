@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -16,20 +17,38 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Mensagem Enviada! 🎉",
-      description: "Entraremos em contato em breve para agendar sua visita.",
-    });
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      eventType: '',
-      date: '',
-      message: ''
-    });
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      toast({
+        title: "Mensagem Enviada! 🎉",
+        description: "Entraremos em contato em breve para agendar sua visita.",
+      });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        eventType: '',
+        date: '',
+        message: ''
+      });
+
+    } catch (error) {
+      toast({
+        title: "Erro ao Enviar 😕",
+        description: "Tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -47,8 +66,8 @@ const Contact = () => {
     },
     {
       icon: Phone,
-      title: 'Telefone',
-      content: '(11) 98765-4321'
+      title: 'Celular / Whatsapp',
+      content: '+55 (15) 98190-0157'
     },
     {
       icon: Mail,
@@ -145,7 +164,7 @@ const Contact = () => {
               <div className="grid sm:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Telefone
+                    Celular/Whatsapp
                   </label>
                   <input
                     type="tel"
@@ -154,7 +173,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-[#003228] focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-                    placeholder="(11) 98765-4321"
+                    placeholder="(11) 98795-0149"
                   />
                 </div>
                 <div>
@@ -169,7 +188,7 @@ const Contact = () => {
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-[#003228] focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
                   >
                     <option value="">Selecione</option>
-                    <option value="corporativo">Evento Esportivo</option>
+                    <option value="esportivo">Evento Esportivo</option>
                     <option value="corporativo">Evento Corporativo</option>
                     <option value="casamento">Casamento</option>
                     <option value="formatura">Formatura</option>
